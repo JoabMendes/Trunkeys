@@ -23,20 +23,36 @@
         
         <!-- libraries -->
         <script src="js/lib/bbui.js"  type="text/javascript"></script>
+        <script src="js/lib/jquery.js"  type="text/javascript"></script>
 
         <!-- sample code -->
         <script src="js/bfb_bootstrap.js"></script>
+
+
+        <link rel="stylesheet" type="text/css" href="css/patternlock.css"/>
+        <script type="text/javascript" src="js/patternlock.js"></script>
+        <script type="text/javascript" src="js/script_all.js"></script>
 
         <!-- initialization -->
         <script type="text/javascript">
             document.addEventListener("webworksready", function(){
                 initApp();
+                var firstlogin = localStorage.getItem("paternseted");
+                if(firstlogin == null || firstlogin !== "done"){
+                    checkInsertPatern();
+                }else{
+                    document.getElementById("setButton").style.visibility = "hidden";
+                    document.getElementById("setButton").style.display = "none";
+                    document.getElementById("checkButton").style.visibility = "visible";
+                }
+                
             });
 
             bb.init({
                     //actionBarDark: true,
                     listsDark: false,
                     highlightColor: '#50d78a',
+                    coloredTitleBar: true,
 
                     // Fires "before" styling is applied and "before" the screen is inserted in the DOM
                     onscreenready: function(element, id) {
@@ -47,10 +63,37 @@
                                     if (id === 'main') {
                                         welcome();
                                     }
+                                    
                                 }
                     });
         </script>
     </head>
     <body> 
+ <div id="content">
+
+            <table id="container">
+                <tr style="display: none;"><div data-bb-type="title" data-bb-caption="Trunkeys"><div class="bb-title-bar bb-title-bar-portrait bb10-title-colored"><div class="bb-title-bar-caption bb-title-bar-caption-portrait">Trunkeys</div></div></div></tr>
+                <tr>
+                    <td>
+                        <input style="display:none;" type="password" id="password" name="password" class="patternlock" />
+                        <input type="submit" value="login"/>
+                    </td>
+                </tr>
+            </table>
+            <div id="action_bar_unlock">
+                <div id="butbar" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
+                    <img src="img/icons/ic_help.png" class="bb-action-bar-icon">
+                    <div class="bb-action-bar-action-display">Help</div>
+                </div>
+                <div style="visibility: visible;" onClick="setPattern();" id="setButton" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
+                    <img src="img/icons/ic_save.png" class="bb-action-bar-icon">
+                    <div class="bb-action-bar-action-display">Save Pattern</div>
+                </div>
+                <div style="visibility: hidden;" onClick="checkPattern();" id="checkButton" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
+                    <img src="img/icons/ic_done.png" class="bb-action-bar-icon">
+                    <div class="bb-action-bar-action-display">Unlock</div>
+                </div>
+            </div>
+</div> 
     </body>
 </html>
