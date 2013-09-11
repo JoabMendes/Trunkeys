@@ -18,23 +18,23 @@
     <div data-bb-type="menu-item" data-bb-img="img/icons/settings.png" data-bb-pin="center">Settings</div>
 </div>
 
-<div data-bb-type="title" data-bb-caption="Trunkeys"></div>
-<div id="main-screen">
+ <div data-bb-type="title" data-bb-caption="Add Password" data-bb-back-caption="Cancel" data-bb-action-caption="Save" onactionclick="doSave()"></div>
 
-	<div data-bb-type="image-list">
-        <div data-bb-type="item" data-bb-img="img/icon_list.png" data-bb-title="Bank" ></div>
-        <div data-bb-type="item" data-bb-img="img/icon_list.png" data-bb-title="Facebook" ></div> 
-        <div data-bb-type="item" data-bb-img="img/icon_list.png" data-bb-title="Gmail"></div> 
+<div id="insert-screen">		
+	<div data-bb-type="label-control-container">
+        <div data-bb-type="row">
+            <div data-bb-type="label">Name:</div>
+            <input type="text" id="name"/>
+        </div>
+        <div data-bb-type="row">
+            <div data-bb-type="label">Nick:</div>
+            <input type="text" id="nick"/>
+        </div>
+        <div data-bb-type="row">
+            <div data-bb-type="label">Password:</div>
+            <input type="text" id="password" class="password"/>
+        </div>
     </div>
-
-</div>
-
-<div data-bb-type="action-bar">
-	<!-- buttons -->
-	<div onclick="bb.pushScreen('insert.html', 'insert')" id="btnBBM" data-bb-type="action" data-bb-style="button" data-bb-img="img/icons/ic_add.png">
-		Add Password
-	</div>
-
 </div>
 
 </div>
