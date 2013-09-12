@@ -18,22 +18,30 @@
     <div data-bb-type="menu-item" data-bb-img="img/icons/settings.png" data-bb-pin="center">Settings</div>
 </div>
 
- <div data-bb-type="title" data-bb-caption="Add Password" data-bb-back-caption="Cancel" data-bb-action-caption="Save" onactionclick="doSave()"></div>
-
+ <div data-bb-type="title" data-bb-caption="Trunkeys" data-bb-back-caption="Cancel" data-bb-action-caption="Save" onactionclick="doSave()"></div>
 <div id="insert-screen">		
-	<div data-bb-type="label-control-container">
-        <div data-bb-type="row">
-            <div data-bb-type="label">Name:</div>
-            <input type="text" id="name"/>
-        </div>
-        <div data-bb-type="row">
-            <div data-bb-type="label">Nick:</div>
-            <input type="text" id="nick"/>
-        </div>
-        <div data-bb-type="row">
-            <div data-bb-type="label">Password:</div>
-            <input type="text" id="password" class="password"/>
-        </div>
+	<div data-bb-type="round-panel"> 
+		<div data-bb-type="label-control-container" id="label-control-container-insert">
+	        <div data-bb-type="row">
+	            <div data-bb-type="label">Name:</div>
+	            <input type="text" id="name" placeholder="account name"/>
+	        </div>
+	        <div data-bb-type="row">
+	            <div data-bb-type="label">Nick:</div>
+	            <input type="text" id="nick" placeholder="account nick"/>
+	        </div>
+	        <div data-bb-type="row">
+	            <div data-bb-type="label">Password:</div>
+	            <input type="text" id="password" class="password" placeholder="account password" onkeyup="passwordStrength(this.value);"/>
+	        </div>
+	        <div data-bb-type="row">
+	        	<div data-bb-type="label">Password strength:</div>
+	        </div>
+	        <div class="rowStrength">
+	        	<div id="passwordDescription" class="strengthlabel0">Not entered</div>
+				<div id="passwordStrength" class="strength0"></div>
+			</div>
+	    </div>
     </div>
 </div>
 

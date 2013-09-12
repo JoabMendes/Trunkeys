@@ -17,7 +17,7 @@
 // called by the webworks ready event
 function initApp() {
 	console.log('app init');
-	//bb.pushScreen('insert.html', 'insert');
+	bb.pushScreen('insert.html', 'insert');
 }
 
 

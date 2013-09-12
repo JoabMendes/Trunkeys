@@ -43,3 +43,77 @@ body, html {
 	*/
 }
 
+#passwordStrength
+{
+	height:30px;
+	display:block;
+	float:left;
+}
+
+#passwordDescription{
+	color: #cccccc;;
+}
+
+.strength0
+{
+	width: 5%;
+	background:#cccccc;
+}
+
+.strengthlabel0{
+	color: #cccccc !important;
+}
+
+.strength1
+{
+	width: 20%;
+	background:#ff0000;
+}
+
+.strengthlabel1{
+	color: #ff0000 !important;
+}
+
+.strength2
+{
+	width: 30%;	
+	background:#ff5f5f;
+}
+
+.strengthlabel2{
+	color: #ff5f5f !important;
+}
+
+.strength3
+{
+	width: 50%;
+	background:#56e500;
+}
+
+.strengthlabel3{
+	color: #56e500 !important;
+}
+
+.strength4
+{
+	background:#4dcd00;
+	width:70%;
+}
+
+.strengthlabel4{
+	color: #4dcd00 !important;
+}
+
+.strength5
+{
+	background:#399800;
+	width: 100%;
+}
+
+.strengthlabel5{
+	color: #399800 !important;
+}
+
+.rowStrength{
+	margin-left: 5px;
+}
