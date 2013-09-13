@@ -1,0 +1,50 @@
+       <script type="text/javascript">
+            document.addEventListener("webworksready", function(){
+                initApp();
+                var firstlogin = localStorage.getItem("paternseted");
+                if(firstlogin == null || firstlogin !== "done"){
+                    checkInsertPatern();
+                }else{
+                    document.getElementById("setButton").style.visibility = "hidden";
+                    document.getElementById("setButton").style.display = "none";
+                    document.getElementById("checkButton").style.visibility = "visible";
+                }
+                
+            });
+
+            bb.init({
+                    //actionBarDark: true,
+                    listsDark: false,
+                    highlightColor: '#50d78a',
+                    coloredTitleBar: true,
+
+                    // Fires "before" styling is applied and "before" the screen is inserted in the DOM
+                    onscreenready: function(element, id) {
+                                   },
+
+                    // Fires "after" styling is applied and "after" the screen is inserted in the DOM
+                    ondomready: function(element, id) {
+                                    if (id === 'main') {
+                                        var bd = toMatriz(localStorage.getItem('BDKEYS'));
+                                        var i = 0;
+                                        var items = [], item;
+                                        while(i < bd.length){
+                                            var rowname = bd[i][0];
+                                            item = document.createElement('div');
+                                            item.setAttribute('data-bb-type','item');
+                                            item.setAttribute('data-bb-title', rowname);
+                                            item.setAttribute('data-bb-img','img/icon_list.png');
+                                            item.onclick = function() {pushByList(bd[i][0])};
+                                            items.push(item);
+                                            i++;
+                                        }
+                                        document.getElementById('listmain').refresh(items);
+                                        welcome();  
+                                    }
+                                    if(id === 'edit'){
+                                        alert(params.bd_id);
+                                    }
+                                    
+                                }
+                    });
+        </script>

@@ -268,6 +268,7 @@ function setPattern(){
 		blackberry.ui.dialog.standardAskAsync("Pattern saved, you need memorize it. Insert again to unlock!", blackberry.ui.dialog.D_OK, null, {
 			title: "Confirme"
 		});
+		firstLogin();
 	}
 	resetButtons();
 	return true;

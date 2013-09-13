@@ -1,5 +1,5 @@
 
-
+//Calcule the password strength
 function passwordStrength(password)
 {
 	var desc = new Array();
@@ -42,7 +42,7 @@ function checkInsertPatern(){
 }
 
 
-
+//Change localstorage string BD to a vetor
 function toMatriz(array){
 	array = array.split(',');
 	i = 0;
@@ -53,7 +53,7 @@ function toMatriz(array){
 	while(i < array.length){
 		aux[index] = array[i];
 		index++;
-		if((i+1)%3==0){
+		if((i+1)%4==0){
 			res[resindex] = aux;
 			resindex++;
 			aux = [];
@@ -64,40 +64,29 @@ function toMatriz(array){
 	return res;
 }
 
-//Teste add matriz
 
-function localStorageMatriz(){
+//Insert a first example in matriz BD
+function firstLogin(){
 	var matriz = new Array();
-	var ele1 = new Array();
-	var ele2 = new Array();
-	var ele3 = new Array();
+	var example = new Array();
 
-	ele1[0] = 'Bank';
-	ele1[1] = "JhoabMendes";
-	ele1[2] = "keyBank";
+	localStorage.setItem('maxid', 0);
+	example[0] = 0;
+	example[1] = 'Example';
+	example[2] = "NickExample";
+	example[3] = "#Ex4mplePa55word#";
 
-	ele2[0] = "Facebook";
-	ele2[1] = "Joabe-.com@gmail.com";
-	ele2[2] = "";
-
-	ele3[0] = "Gmail";
-	ele3[1] = "joab.mendes.r2d2@gmail.com";
-	ele3[2] = "keyGmail";
-
-	matriz[0] = ele1;
-	matriz[1] = ele2;
-	matriz[2] = ele3;
-
+	matriz[0] = example;
 	localStorage.setItem('BDKEYS', matriz);
-	var ret = localStorage.getItem('BDKEYS');
-	alert(toMatriz(ret));
 }
 
 function insertMatriz(name, nick, password, matriz){
 	var aux = new Array();
-	aux[0] = name;
-	aux[1] = nick;
-	aux[2] = password;
+	localstorage.setItem('maxid', parseInt(localstorage.getItem('maxid'))+1);
+	aux[0] = localstorage.getItem('maxid')
+	aux[1] = name;
+	aux[2] = nick;
+	aux[3] = password;
 	matriz.push(aux);
 	return matriz;
 }
@@ -105,16 +94,27 @@ function insertMatriz(name, nick, password, matriz){
 
 function doSave(){
 	
-	
 	var name = document.getElementById('name').value;
 	var nick = document.getElementById('nick').value;
 	var password = document.getElementById('password').value;
+	if(name != "" && password != ""){
+		if(nick == ""){
+			nick = name;
+		}
+		var bd = toMatriz(localStorage.getItem('BDKEYS'));
+		bd = insertMatriz(name, nick, password, bd);
+		localStorage.setItem('BDKEYS', bd);
+		blackberry.ui.dialog.standardAskAsync("Password saved with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+			title: "Ok!"
+		});
+	}else{
+		blackberry.ui.dialog.standardAskAsync("You need to insert at least the fields: 'Name' and 'Password'.", blackberry.ui.dialog.D_OK, null, {
+			title: "Ops!"
+		});
+	}
 	
-	var bd = toMatriz(localStorage.getItem('BDKEYS'));
-
-	bd = insertMatriz(name, nick, password, bd);
-
-	localStorage.setItem('BDKEYS', bd);
 }
 
-
+function pushByList(fix_id){
+	bb.pushScreen('update.html', 'update', {bd_id: fix_id});
+}

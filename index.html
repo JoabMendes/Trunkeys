@@ -28,17 +28,19 @@
         <!-- sample code -->
         <script src="js/bfb_bootstrap.js"></script>
 
+        <!-- MyScript -->
+        <script type="text/javascript" src="js/script_all.js"></script>
+
         <!-- Patern Lock -->
         <link rel="stylesheet" type="text/css" href="css/patternlock.css"/>
         <script type="text/javascript" src="js/patternlock.js"></script>
 
         <!-- lib functions -->
 
-        <!-- MyScript -->
-        <script type="text/javascript" src="js/script_all.js"></script>
+        
 
         <!-- initialization -->
-        <script type="text/javascript">
+               <script type="text/javascript">
             document.addEventListener("webworksready", function(){
                 initApp();
                 var firstlogin = localStorage.getItem("paternseted");
@@ -63,9 +65,32 @@
                                    },
 
                     // Fires "after" styling is applied and "after" the screen is inserted in the DOM
-                    ondomready: function(element, id) {
+                    ondomready: function(element, id, params) {
                                     if (id === 'main') {
-                                        welcome();
+                                        var bd = toMatriz(localStorage.getItem('BDKEYS'));
+                                        var i = 0;
+                                        var items = [], item;
+                                        var rowname = "";
+                                        while(i < bd.length){
+                                            rowname = bd[i][1];
+                                            item = document.createElement('div');
+                                            item.setAttribute('data-bb-type','item');
+                                            item.setAttribute('data-bb-title', rowname);
+                                            item.setAttribute('data-bb-img','img/icon_list.png');
+                                            item.onclick = function() {pushByList(rowname)};
+                                            items.push(item);
+                                            i++;
+                                        }
+                                        document.getElementById('listmain').refresh(items);
+                                        welcome();  
+                                    }
+                                    if(id === 'update'){
+                                        alert(params.bd_id);
+                                        //CREATE UPDATE SCREEN
+                                        //LIST INFO
+                                        //UPDATE AND BACK BUTTON
+                                        //UPDATE FUNCTION
+                                        //UPDATE STRONG INFO
                                     }
                                     
                                 }
