@@ -43,7 +43,7 @@ function checkInsertPatern(){
 }
 
 
-//Change localstorage string BD to a vetor
+//Change localStorage string BD to a vetor
 function toMatriz(array){
 	array = array.split(',');
 	i = 0;
@@ -83,8 +83,8 @@ function firstLogin(){
 
 function insertMatriz(name, nick, password, matriz){
 	var aux = new Array();
-	localstorage.setItem('maxid', parseInt(localstorage.getItem('maxid'))+1);
-	aux[0] = localstorage.getItem('maxid')
+	localStorage.setItem('maxid', parseInt(localStorage.getItem('maxid'))+1);
+	aux[0] = localStorage.getItem('maxid')
 	aux[1] = name;
 	aux[2] = nick;
 	aux[3] = password;
@@ -116,10 +116,61 @@ function doSave(){
 	
 }
 
-function doUpdate(id){
+function updateMatriz(id, name, nick, password, bd){
+	var i = 0;
+	while(i < bd.length){
+		if(bd[i][0] === id){
+			bd[i][1] = name;
+			bd[i][2] = nick;
+			bd[i][3] = password;
+		}
+		i++;
+	}
+	return bd;
+}
+
+function doUpdate(id_update){
+	var name = document.getElementById('name').value;
+	var nick = document.getElementById('nick').value;
+	var password = document.getElementById('password').value;
+	if(name != "" && password != ""){
+		if(nick == ""){
+			nick = name;
+		}
+		var bd = toMatriz(localStorage.getItem('BDKEYS'));
+		bd = updateMatriz(id_update, name, nick, password, bd);
+		localStorage.setItem('BDKEYS', bd);
+		blackberry.ui.dialog.standardAskAsync("Password updated with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+			title: "Ok!"
+		});
+	}else{
+		blackberry.ui.dialog.standardAskAsync("You need to insert at least the fields: 'Name' and 'Password'.", blackberry.ui.dialog.D_OK, null, {
+			title: "Ops!"
+		});
+	}
 
 }
 
 function pushByList(rowid, rowname, rownick, rowpass){
 	bb.pushScreen('update.html', 'update', {row_id: rowid, row_name: rowname, row_nick: rownick, row_pass: rowpass});
+}
+
+
+function doDelete(id_delete){
+	//blackberry.ui.dialog.standardAskAsync("Are you sure to delete this password?", blackberry.ui.dialog.D_OK_CANCEL, dialogCallBack, {title : "Are you sure?"});
+	if(ok){
+		var bd = toMatriz(localStorage.getItem('BDKEYS'));
+		var i = 0;
+		while(i < bd.length){
+			if(bd[i][0] === id_delete){
+				bd.splice(i, 1);
+			}
+			i++;
+		}
+		localStorage.setItem('BDKEYS', bd);
+		blackberry.ui.dialog.standardAskAsync("Password deleted with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+				title: "Ok!"
+		});
+	}
+	
 }

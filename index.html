@@ -96,6 +96,8 @@
                                 document.getElementById("pass").value = params.row_pass;
                                 passwordStrength(params.row_pass);
                                 document.getElementById('updatebar').onactionclick = function(){doUpdate(params.row_id)};
+                                document.getElementById('btnDelete').onclick = function(){doDelete(params.row_id)};
+                                
                             }
                                     
                     }
