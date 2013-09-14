@@ -11,28 +11,28 @@
 -->
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<div data-bb-type="screen" data-bb-effect="slide-left"  data-bb-scroll-effect="off">
+<div data-bb-type="screen" data-bb-effect="slide-left"  data-bb-scroll-effect="off" data-bb-indicator="true">
 
 <div data-bb-type="menu">
 	<div data-bb-type="menu-item" data-bb-img="img/icons/info.png" data-bb-pin="left">Info</div>
     <div data-bb-type="menu-item" data-bb-img="img/icons/settings.png" data-bb-pin="center">Settings</div>
 </div>
 
- <div data-bb-type="title" data-bb-caption="Trunkeys" data-bb-back-caption="Back" data-bb-action-caption="Update" onactionclick="doUpdate()"></div>
+ <div data-bb-type="title" data-bb-caption="Trunkeys" id="updatebar" data-bb-back-caption="Back" data-bb-action-caption="Update" onactionclick=""></div>
 <div id="insert-screen">		
 	<div data-bb-type="round-panel"> 
 		<div data-bb-type="label-control-container" id="label-control-container-insert">
 	        <div data-bb-type="row">
 	            <div data-bb-type="label">Name:</div>
-	            <input type="text" id="name" placeholder="account name"/>
+	            <input type="text" id="name"  placeholder="account name"/>
 	        </div>
 	        <div data-bb-type="row">
 	            <div data-bb-type="label">Nick:</div>
-	            <input type="text" id="nick" placeholder="account nick"/>
+	            <input type="text" id="nick"  placeholder="account nick"/>
 	        </div>
 	        <div data-bb-type="row">
 	            <div data-bb-type="label">Password:</div>
-	            <input type="text" id="password" class="password" placeholder="account password" onkeyup="passwordStrength(this.value);"/>
+	            <input type="text" id="pass" placeholder="account password" onkeyup="passwordStrength(this.value);"/>
 	        </div>
 	        <div data-bb-type="row">
 	        	<div data-bb-type="label">Password strength:</div>

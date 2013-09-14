@@ -66,35 +66,40 @@
 
                     // Fires "after" styling is applied and "after" the screen is inserted in the DOM
                     ondomready: function(element, id, params) {
-                                    if (id === 'main') {
-                                        var bd = toMatriz(localStorage.getItem('BDKEYS'));
-                                        var i = 0;
-                                        var items = [], item;
-                                        var rowname = "";
-                                        while(i < bd.length){
-                                            rowname = bd[i][1];
-                                            item = document.createElement('div');
-                                            item.setAttribute('data-bb-type','item');
-                                            item.setAttribute('data-bb-title', rowname);
-                                            item.setAttribute('data-bb-img','img/icon_list.png');
-                                            item.onclick = function() {pushByList(rowname)};
-                                            items.push(item);
-                                            i++;
-                                        }
-                                        document.getElementById('listmain').refresh(items);
-                                        welcome();  
-                                    }
-                                    if(id === 'update'){
-                                        alert(params.bd_id);
-                                        //CREATE UPDATE SCREEN
-                                        //LIST INFO
-                                        //UPDATE AND BACK BUTTON
-                                        //UPDATE FUNCTION
-                                        //UPDATE STRONG INFO
-                                    }
-                                    
+                            if (id === 'main') {
+                                var bd = toMatriz(localStorage.getItem('BDKEYS'));
+                                var i = 0;
+                                var items = [], item;
+                                var rowid = "";
+                                var rowname = "";
+                                var rownick = "";
+                                var rowpass = "";
+                                while(i < bd.length){
+                                    rowid = bd[i][0];
+                                    rowname = bd[i][1];
+                                    rownick = bd[i][2];
+                                    rowpass = bd[i][3];
+                                    item = document.createElement('div');
+                                    item.setAttribute('data-bb-type','item');
+                                    item.setAttribute('data-bb-title', rowname);
+                                    item.setAttribute('data-bb-img','img/icon_list.png');
+                                    item.onclick = function() {pushByList(rowid, rowname, rownick, rowpass)};
+                                    items.push(item);
+                                    i++;
                                 }
-                    });
+                                document.getElementById('listmain').refresh(items);
+                                welcome();  
+                            }
+                            if(id === 'update'){
+                                document.getElementById('name').value = params.row_name;
+                                document.getElementById('nick').value = params.row_nick;
+                                document.getElementById("pass").value = params.row_pass;
+                                passwordStrength(params.row_pass);
+                                document.getElementById('updatebar').onactionclick = function(){doUpdate(params.row_id)};
+                            }
+                                    
+                    }
+            });
         </script>
     </head>
     <body> 

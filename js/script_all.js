@@ -31,6 +31,7 @@ function passwordStrength(password)
 	 document.getElementById("passwordStrength").className = "strength" + score;
 	 document.getElementById("passwordDescription").className = "strengthlabel" + score;
 	 document.getElementById('password').value = password;
+	 document.getElementById('pass').value = password;
 }
 
 
@@ -115,6 +116,10 @@ function doSave(){
 	
 }
 
-function pushByList(fix_id){
-	bb.pushScreen('update.html', 'update', {bd_id: fix_id});
+function doUpdate(id){
+
+}
+
+function pushByList(rowid, rowname, rownick, rowpass){
+	bb.pushScreen('update.html', 'update', {row_id: rowid, row_name: rowname, row_nick: rownick, row_pass: rowpass});
 }
