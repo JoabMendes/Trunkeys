@@ -171,7 +171,7 @@ function dialogBack(selection){
   		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		var i = 0;
 		while(i < bd.length){
-			if(bd[i][0] === id_del){
+			if(bd[i][0] == id_del){
 				bd.splice(i, 1);
 			}
 			i++;
@@ -186,7 +186,7 @@ function dialogBack(selection){
 //CALL THE ASK AND SET THE ID TO DELETE
 function doDelete(id_delete){
 	sureFunction();
-	id_del = id_delete;
+	id_del = parseInt(id_delete);
 }
 
 /*--------------------------------------------------------*/

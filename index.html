@@ -83,7 +83,7 @@
                                     item.setAttribute('data-bb-type','item');
                                     item.setAttribute('data-bb-title', rowname);
                                     item.setAttribute('data-bb-img','img/icon_list.png');
-                                    item.onclick = function() {pushByList(rowid, rowname, rownick, rowpass)};
+                                    item.setAttribute('onclick','pushByList("'+rowid+'", "'+rowname+'", "'+rownick+'", "'+rowpass+'")');
                                     items.push(item);
                                     i++;
                                 }
@@ -96,7 +96,7 @@
                                 document.getElementById("pass").value = params.row_pass;
                                 passwordStrength(params.row_pass);
                                 document.getElementById('updatebar').onactionclick = function(){doUpdate(params.row_id)};
-                                document.getElementById('btnDelete').onclick = function(){doDelete(params.row_id)};
+                                document.getElementById('btnDelete').setAttribute('onclick','doDelete('+params.row_id+')');
                                 
                             }
                                     
