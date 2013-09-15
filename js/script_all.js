@@ -156,13 +156,22 @@ function pushByList(rowid, rowname, rownick, rowpass){
 }
 
 
-function doDelete(id_delete){
-	//blackberry.ui.dialog.standardAskAsync("Are you sure to delete this password?", blackberry.ui.dialog.D_OK_CANCEL, dialogCallBack, {title : "Are you sure?"});
-	if(ok){
-		var bd = toMatriz(localStorage.getItem('BDKEYS'));
+/*-------------------DELETE FUNTION----------------------*/
+
+var id_del = null;
+
+//ASK IF ARE SURE ABOUT THE DELETE
+function sureFunction(){
+	blackberry.ui.dialog.standardAskAsync("Are you sure to delete this password?", blackberry.ui.dialog.D_OK_CANCEL, dialogBack, {title : "Are you sure?"});
+}
+
+//IF ASK ABOUT DELETE IS OK, DELE THE INFO BY ID_DEL
+function dialogBack(selection){
+  if(selection == 0){
+  		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		var i = 0;
 		while(i < bd.length){
-			if(bd[i][0] === id_delete){
+			if(bd[i][0] === id_del){
 				bd.splice(i, 1);
 			}
 			i++;
@@ -171,6 +180,13 @@ function doDelete(id_delete){
 		blackberry.ui.dialog.standardAskAsync("Password deleted with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
 				title: "Ok!"
 		});
-	}
-	
+  }
 }
+
+//CALL THE ASK AND SET THE ID TO DELETE
+function doDelete(id_delete){
+	sureFunction();
+	id_del = id_delete;
+}
+
+/*--------------------------------------------------------*/
