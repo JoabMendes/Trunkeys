@@ -37,7 +37,7 @@ function passwordStrength(password)
 
 //Message first login
 function checkInsertPatern(){
-	blackberry.ui.dialog.standardAskAsync("In your first login, you need insert a pattern, click help to see how insert a pattern", blackberry.ui.dialog.D_OK, null, {
+	blackberry.ui.dialog.standardAskAsync("In your first login, you need insert a pattern, click in help to see how insert a pattern", blackberry.ui.dialog.D_OK, null, {
 			title: "Welcome to the Trunkeys!"
 		});
 }
@@ -105,9 +105,6 @@ function doSave(){
 		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		bd = insertMatriz(name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
-		/*blackberry.ui.dialog.standardAskAsync("Password saved with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
-			title: "Ok!"
-		});*/
 		try{
 			blackberry.ui.toast.show("Password saved with sucess!");
 		}catch (e) {
@@ -146,9 +143,6 @@ function doUpdate(id_update){
 		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		bd = updateMatriz(id_update, name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
-		/*blackberry.ui.dialog.standardAskAsync("Password updated with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
-			title: "Ok!"
-		});*/
 		try{
 			blackberry.ui.toast.show("Password updated with sucess!");
 		}catch (e) {
@@ -179,7 +173,8 @@ function sureFunction(){
 
 //IF ASK ABOUT DELETE IS OK, DELE THE INFO BY ID_DEL
 function dialogBack(selection){
-  if(selection == 0){
+  console.log("dialogBack called. selection: "+selection.return);
+  if(selection.return === 'Ok' || selection == 0){
   		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		var i = 0;
 		while(i < bd.length){
@@ -189,9 +184,6 @@ function dialogBack(selection){
 			i++;
 		}
 		localStorage.setItem('BDKEYS', bd);
-		/*blackberry.ui.dialog.standardAskAsync("Password deleted with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
-				title: "Ok!"
-		});*/
 		try{
 			blackberry.ui.toast.show("Password deleted with sucess!");
 		}catch (e) {
@@ -206,7 +198,7 @@ function doDelete(id_delete){
 	id_del = parseInt(id_delete);
 	if(id_del != null){
 		sureFunction();
-		console.log("id inserted, sure called with var ok.")
+		console.log("id inserted, sure called with var ok.");
 	}
 }
 
