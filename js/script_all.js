@@ -203,3 +203,8 @@ function doDelete(id_delete){
 }
 
 /*--------------------------------------------------------*/
+
+//reload app by index
+function popScreenIndex(){
+	window.open('index.html', '_self');
+}

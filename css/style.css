@@ -117,3 +117,11 @@ body, html {
 .rowStrength{
 	margin-left: 5px;
 }
+
+#update-screen{
+	overflow: hidden;
+}
+
+#insert-screen{
+	overflow: hidden;
+}
