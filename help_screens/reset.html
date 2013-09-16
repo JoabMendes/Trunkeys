@@ -15,31 +15,23 @@
 
 <div data-bb-type="title" data-bb-caption="Trunkeys Help"></div>
 <div id="main-screen">
-
-	<div data-bb-type="image-list" id="listmain" data-bb-style="arrowlist" >
-		<div data-bb-type="item" data-bb-img="img/dark_icons/target.png" 
-		onclick="bb.pushScreen('help_screens/save.html', 'savehelp');" data-bb-title="Saving a pattern"></div>
-
-		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_add.png"  
-		onclick="bb.pushScreen('help_screens/add.html', 'addhelp');" data-bb-title="Adding a password"></div>
-
-		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_reload.png" 
-		onclick="bb.pushScreen('help_screens/update.html', 'helpup');" data-bb-title="Updating a password"></div>
-
-		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_delete.png" 
-		onclick="bb.pushScreen('help_screens/delete.html', 'deleteup');" data-bb-title="Deleting a password"></div>
-
-		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_reply.png" 
-		onclick="bb.pushScreen('help_screens/reset.html', 'resetup');" data-bb-title="Reseting the app"></div>
+	<div data-bb-type="round-panel"> 
+        <div data-bb-type="panel-header">1 Settings</div>
+  		<h4>Open the top menu and choose the setting button.</h4>
+  		<img src="img/help/09.png" alt="01" style="margin-left: 200px;">
     </div>
-
+    <div data-bb-type="round-panel"> 
+        <div data-bb-type="panel-header">2 Choose the option</div>
+  		<h4>Choose the option 'Reset App' and confirm.</h4>
+  		<img src="img/help/10.png" alt="01" style="margin-left: 200px;">
+    </div>
 </div>
 
-<div data-bb-type="action-bar">
+<!-- action bar bbm.updateMessage();-->
+<div data-bb-type="action-bar" data-bb-back-caption="Back">
 	<!-- buttons -->
 	<div onclick="popScreenIndex()" id="btnAdd" data-bb-type="action" data-bb-style="button" 
 	data-bb-img="img/icons/ic_close.png">Exit</div>
-
 </div>
 
 </div>

@@ -106,7 +106,7 @@ function doSave(){
 		bd = insertMatriz(name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
 		try{
-			blackberry.ui.toast.show("Password saved with sucess!");
+			blackberry.ui.toast.show("Password saved with success!");
 		}catch (e) {
 			console.log(e);
 		}
@@ -144,7 +144,7 @@ function doUpdate(id_update){
 		bd = updateMatriz(id_update, name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
 		try{
-			blackberry.ui.toast.show("Password updated with sucess!");
+			blackberry.ui.toast.show("Password updated with success!");
 		}catch (e) {
 			console.log(e);
 		}
@@ -185,7 +185,7 @@ function dialogBack(selection){
 		}
 		localStorage.setItem('BDKEYS', bd);
 		try{
-			blackberry.ui.toast.show("Password deleted with sucess!");
+			blackberry.ui.toast.show("Password deleted with success!");
 		}catch (e) {
 			console.log(e);
 		}
@@ -208,3 +208,65 @@ function doDelete(id_delete){
 function popScreenIndex(){
 	window.open('index.html', '_self');
 }
+
+//------------------Settings Functions------------------
+
+//-----------------------clear function------------------
+function clearAllPasswordsConfirm(selection){
+	if(selection.return === 'Ok' || selection == 0){
+		try{
+			localStorage.setItem('BDKEYS', '');
+			blackberry.ui.toast.show("Passwords deleted with success!");
+		}catch (e) {
+			console.log(e);
+		}
+	}
+}
+
+function clearAllPasswords(){
+	blackberry.ui.dialog.standardAskAsync("Are you sure to delete all the passwords?", blackberry.ui.dialog.D_OK_CANCEL, clearAllPasswordsConfirm, {title : "Are you sure?"});
+}
+
+//------------------reset Pattern function------------------
+
+function resetPatternSettingConfirm(selection){
+	if(selection.return === 'Ok' || selection == 0){
+		try{
+			localStorage.removeItem("paternseted");
+			localStorage.removeItem("patern");
+			localStorage.setItem('resetToken', 'ok');
+			blackberry.ui.toast.show("Pattern reseted with success!");
+		}catch (e) {
+			console.log(e);
+		}
+		popScreenIndex();
+	}
+}
+
+function resetPatternSetting(){
+	blackberry.ui.dialog.standardAskAsync("Are you sure to reset the pattern key?", blackberry.ui.dialog.D_OK_CANCEL, resetPatternSettingConfirm, {title : "Are you sure?"});
+}
+
+//------------------reset app functions------------------
+
+function resetAppConfirm(selection){
+	if(selection.return === 'Ok' || selection == 0){
+		try{
+			localStorage.removeItem("paternseted");
+			localStorage.removeItem("patern");
+			localStorage.setItem("maxid", 0);
+			localStorage.removeItem('BDKEYS');
+			localStorage.removeItem('resetToken');
+			blackberry.ui.toast.show("App reseted with success!");
+		}catch (e) {
+			console.log(e);
+		}
+		popScreenIndex();
+	}
+}
+
+function resetApp(){
+	blackberry.ui.dialog.standardAskAsync("Are you sure to reset the App?", blackberry.ui.dialog.D_OK_CANCEL, resetAppConfirm, {title : "Are you sure?"});
+}
+
+//------------------------------------------------------

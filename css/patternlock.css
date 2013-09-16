@@ -126,16 +126,23 @@ input[type="button"]{
 }
 
 #butbar{
-	width: 50%; height: 132px; border-top: 8px solid transparent;
+	width: 33%; height: 132px; border-top: 8px solid transparent;
 }
 
 #butbar:active{
 	border-top: 8px solid #50d78a;
 }
 
+#resetIndexButton{
+	width: 33%; height: 132px; border-top: 8px solid transparent;
+}
+
+#resetIndexButton:active{
+	border-top: 8px solid #50d78a;
+}
 
 #setButton{
-	width: 50%; height: 132px; border-top: 8px solid transparent;
+	width: 33%; height: 132px; border-top: 8px solid transparent;
 }
 
 #setButton:active{
@@ -144,7 +151,7 @@ input[type="button"]{
 
 
 #checkButton{
-	width: 50%; height: 132px; border-top: 8px solid transparent;
+	width: 33%; height: 132px; border-top: 8px solid transparent;
 }
 
 #checkButton:active{

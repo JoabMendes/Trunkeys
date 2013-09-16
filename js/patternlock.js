@@ -268,7 +268,9 @@ function setPattern(){
 		blackberry.ui.dialog.standardAskAsync("Pattern saved, you need memorize it. Insert again to unlock!", blackberry.ui.dialog.D_OK, null, {
 			title: "Confirme"
 		});
-		firstLogin();
+		if(localStorage.getItem('resetToken') != 'ok'){
+			firstLogin();
+		}
 	}
 	resetButtons();
 	return true;
@@ -318,3 +320,10 @@ var resetButtons = function(){
 		document.getElementById("patternlockbutton8").className = "patternlockbutton";
 		document.getElementById("patternlockbutton9").className = "patternlockbutton";
 	}
+
+function clearPaternReset(){
+	unlockPattrn = "";
+	document.getElementById("password").value = "";
+	resetButtons();
+	console.log("Patern cleared");
+}

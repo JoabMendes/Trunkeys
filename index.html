@@ -74,7 +74,7 @@
                                 var rowname = "";
                                 var rownick = "";
                                 var rowpass = "";
-                                while(i < bd.length){
+                                while(i < bd.length && bd != ''){
                                     rowid = bd[i][0];
                                     rowname = bd[i][1];
                                     rownick = bd[i][2];
@@ -86,6 +86,9 @@
                                     item.setAttribute('onclick','pushByList("'+rowid+'", "'+rowname+'", "'+rownick+'", "'+rowpass+'")');
                                     items.push(item);
                                     i++;
+                                }
+                                if(bd == ''){
+                                    document.getElementById('listmain').innerHTML = "<h3 style='color: #ccc; text-align: center;'>No password entered</h3>"
                                 }
                                 document.getElementById('listmain').refresh(items);
                                 welcome();  
@@ -120,6 +123,10 @@
                 <div onclick="bb.pushScreen('help.html', 'help');" id="butbar" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
                     <img src="img/icons/ic_help.png" class="bb-action-bar-icon">
                     <div class="bb-action-bar-action-display">Help</div>
+                </div>
+                <div style="visibility: visible;" onClick="clearPaternReset();" id="resetIndexButton" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
+                    <img src="img/icons/ic_reload.png" class="bb-action-bar-icon">
+                    <div class="bb-action-bar-action-display">Clear</div>
                 </div>
                 <div style="visibility: visible;" onClick="setPattern();" id="setButton" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
                     <img src="img/icons/ic_save.png" class="bb-action-bar-icon">
