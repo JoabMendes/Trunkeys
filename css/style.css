@@ -125,3 +125,7 @@ body, html {
 #insert-screen{
 	overflow: hidden;
 }
+
+.bb-action-bar-back-text{
+	overflow: visible !important;
+}

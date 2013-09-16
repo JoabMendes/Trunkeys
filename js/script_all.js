@@ -37,7 +37,7 @@ function passwordStrength(password)
 
 //Message first login
 function checkInsertPatern(){
-	blackberry.ui.dialog.standardAskAsync("In your first login, you need insert a pattern, click in help to see how insert a pattern", blackberry.ui.dialog.D_OK, null, {
+	blackberry.ui.dialog.standardAskAsync("In your first login, you need save a pattern, click in help to see how save a pattern", blackberry.ui.dialog.D_OK, null, {
 			title: "Welcome to the Trunkeys!"
 		});
 }
