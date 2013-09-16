@@ -105,9 +105,15 @@ function doSave(){
 		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		bd = insertMatriz(name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
-		blackberry.ui.dialog.standardAskAsync("Password saved with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+		/*blackberry.ui.dialog.standardAskAsync("Password saved with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
 			title: "Ok!"
-		});
+		});*/
+		try{
+			blackberry.ui.toast.show("Password saved with sucess!");
+		}catch (e) {
+			console.log(e);
+		}
+		bb.pushScreen('main.html', 'main');
 	}else{
 		blackberry.ui.dialog.standardAskAsync("You need to insert at least the fields: 'Name' and 'Password'.", blackberry.ui.dialog.D_OK, null, {
 			title: "Ops!"
@@ -140,9 +146,15 @@ function doUpdate(id_update){
 		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		bd = updateMatriz(id_update, name, nick, password, bd);
 		localStorage.setItem('BDKEYS', bd);
-		blackberry.ui.dialog.standardAskAsync("Password updated with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+		/*blackberry.ui.dialog.standardAskAsync("Password updated with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
 			title: "Ok!"
-		});
+		});*/
+		try{
+			blackberry.ui.toast.show("Password updated with sucess!");
+		}catch (e) {
+			console.log(e);
+		}
+		bb.pushScreen('main.html', 'main');
 	}else{
 		blackberry.ui.dialog.standardAskAsync("You need to insert at least the fields: 'Name' and 'Password'.", blackberry.ui.dialog.D_OK, null, {
 			title: "Ops!"
@@ -171,22 +183,31 @@ function dialogBack(selection){
   		var bd = toMatriz(localStorage.getItem('BDKEYS'));
 		var i = 0;
 		while(i < bd.length){
-			if(bd[i][0] == id_del){
+			if(parseInt(bd[i][0]) == id_del){
 				bd.splice(i, 1);
 			}
 			i++;
 		}
 		localStorage.setItem('BDKEYS', bd);
-		blackberry.ui.dialog.standardAskAsync("Password deleted with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
+		/*blackberry.ui.dialog.standardAskAsync("Password deleted with sucess!", blackberry.ui.dialog.D_OK, bb.pushScreen('main.html', 'main'), {
 				title: "Ok!"
-		});
+		});*/
+		try{
+			blackberry.ui.toast.show("Password deleted with sucess!");
+		}catch (e) {
+			console.log(e);
+		}
+		bb.pushScreen('main.html', 'main');
   }
 }
 
 //CALL THE ASK AND SET THE ID TO DELETE
 function doDelete(id_delete){
-	sureFunction();
 	id_del = parseInt(id_delete);
+	if(id_del != null){
+		sureFunction();
+		console.log("id inserted, sure called with var ok.")
+	}
 }
 
 /*--------------------------------------------------------*/
