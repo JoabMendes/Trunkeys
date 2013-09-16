@@ -13,25 +13,23 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
 <div data-bb-type="screen" data-bb-effect="slide-left"  data-bb-scroll-effect="off">
 
-<div data-bb-type="menu">
-	<div data-bb-type="menu-item" data-bb-img="img/icons/ic_help.png" data-bb-pin="left" onclick="bb.pushScreen('help.html', 'help');">Help</div>
-	<div data-bb-type="menu-item" data-bb-img="img/icons/bbm.png" data-bb-pin="left">Invite</div>
-    <div data-bb-type="menu-item" data-bb-img="img/icons/settings.png" data-bb-pin="center">Settings</div>
-</div>
-
-<div data-bb-type="title" data-bb-caption="Trunkeys"></div>
+<div data-bb-type="title" data-bb-caption="Trunkeys Help"></div>
 <div id="main-screen">
 
-	<div data-bb-type="image-list" id="listmain" data-bb-style="arrowbuttons">
-
+	<div data-bb-type="image-list" id="listmain" data-bb-style="arrowlist" >
+		<div data-bb-type="item" data-bb-img="img/dark_icons/target.png" data-bb-title="Drawing a pattern"></div>
+		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_add.png" data-bb-title="Adding a password"></div>
+		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_reload.png" data-bb-title="Updating a password"></div>
+		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_delete.png" data-bb-title="Deleting a password"></div>
+		<div data-bb-type="item" data-bb-img="img/dark_icons/ic_reply.png" data-bb-title="Reseting the app"></div>
     </div>
 
 </div>
 
 <div data-bb-type="action-bar">
 	<!-- buttons -->
-	<div onclick="bb.pushScreen('insert.html', 'insert')" id="btnAdd" data-bb-type="action" data-bb-style="button" data-bb-img="img/icons/ic_add.png">
-		Add Password
+	<div onclick="popScreenIndex()" id="btnAdd" data-bb-type="action" data-bb-style="button" data-bb-img="img/icons/ic_close.png">
+		Exit
 	</div>
 
 </div>
