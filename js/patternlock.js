@@ -128,6 +128,11 @@ var patternlock={
 	},
 
 	buttontouchstart:function(b){
+		try{
+			navigator.vibrate(100); //vibrar
+		}catch(e){
+			console.log(e);
+		}
 		patternlock.isdrawing = true;
 		b.className = "patternlockbutton touched";
 		patternlock.from = "";
@@ -145,9 +150,19 @@ var patternlock={
 			
 				var cn = b.className;
 				if(cn.indexOf('touched')<0){
-					b.className = "patternlockbutton touched"
+					b.className = "patternlockbutton touched";
+					try{
+						navigator.vibrate(100); //vibrar
+					}catch(e){
+						console.log(e);
+					}
 				}else{
-					b.className = "patternlockbutton touched multiple"
+					b.className = "patternlockbutton touched multiple";
+					try{
+						navigator.vibrate(100); //vibrar
+					}catch(e){
+						console.log(e);
+					}
 				}
 			
 				patternlock.from = patternlock.to;
@@ -283,6 +298,7 @@ function checkPattern(){
 	if(pttrn==unlockPattrn && isNaN(pttrn) == false){
 		//document.getElementById("message").textContent = "Login SuccessFul";
 		//document.getElementById("content").innerHTML = "<img src='img/select.png'/><br><br><h3>Reload the Page to Set a different Pattern</h3>";
+		document.getElementById("content").style.display = "none";
 		bb.pushScreen('main.html', 'main');
 	}
 	else{
