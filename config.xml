@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
  Copyright 2013 Research In Motion Limited.
 
@@ -12,8 +12,8 @@
 -->
 <widget xmlns="http://www.w3.org/ns/widgets"
         xmlns:rim="http://www.blackberry.com/ns/widgets"
-        version="1.0.2.1"
-        id="trunkeys">
+        version="2.0.2.3"
+        id="trunkeys1">
     <name>Trunkeys</name>
     <content src="local:///index.html" />
     <author rim:copyright="2013"

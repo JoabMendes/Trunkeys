@@ -299,7 +299,12 @@ function checkPattern(){
 		//document.getElementById("message").textContent = "Login SuccessFul";
 		//document.getElementById("content").innerHTML = "<img src='img/select.png'/><br><br><h3>Reload the Page to Set a different Pattern</h3>";
 		document.getElementById("content").style.display = "none";
-		bb.pushScreen('main.html', 'main');
+		if(localStorage.getItem('setQuestion') != 'readyToSet'){
+			bb.pushScreen('main.html', 'main');
+		}else{
+			bb.pushScreen('recover.html', 'recover');
+		}
+		
 	}
 	else{
 		blackberry.ui.dialog.standardAskAsync("Pattern Mismatch! Try Again", blackberry.ui.dialog.D_OK, null, {

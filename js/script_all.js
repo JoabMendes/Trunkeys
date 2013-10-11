@@ -37,9 +37,16 @@ function passwordStrength(password)
 
 //Message first login
 function checkInsertPatern(){
-	blackberry.ui.dialog.standardAskAsync("In your first login, you need to create a pattern, click in help to see how to save a pattern", blackberry.ui.dialog.D_OK, null, {
+	if(localStorage.getItem('setQuestion') === 'readyToSet' || localStorage.getItem('setQuestion') == null){
+		blackberry.ui.dialog.standardAskAsync("In your first login you need to follow the steps: \n1. Create a pattern key to login your app. \n2. Save a security question and your respective answer. ", blackberry.ui.dialog.D_OK, null, {
 			title: "Welcome to the Trunkeys!"
 		});
+	}else{
+		blackberry.ui.dialog.standardAskAsync("You need to follow the steps: \n1. Create a pattern key to login your app.", blackberry.ui.dialog.D_OK, null, {
+			title: "Patern Reseted"
+		});
+	}
+	
 }
 
 
@@ -79,6 +86,28 @@ function firstLogin(){
 
 	matriz[0] = example;
 	localStorage.setItem('BDKEYS', matriz);
+	localStorage.setItem('setQuestion', 'readyToSet');
+}
+
+function saveQuestion(){
+	var sQuestion = document.getElementById('secQuestion').value;
+	var sAnswer = document.getElementById('secAnswer').value;
+	if(sQuestion != "" && sAnswer != ""){
+		localStorage.setItem('securityQuestion', sQuestion);
+		localStorage.setItem('securityAnswer', sAnswer);
+		localStorage.setItem('setQuestion', 'seted');
+		try{
+			blackberry.ui.toast.show("Security question saved!");
+		}catch (e) {
+			console.log(e);
+		}
+		bb.pushScreen('main.html', 'main');
+	}else{
+		blackberry.ui.dialog.standardAskAsync("You need to insert the security question and your respective answer.", blackberry.ui.dialog.D_OK, null, {
+			title: "Ops!"
+		});
+	}
+
 }
 
 function insertMatriz(name, nick, password, matriz){
@@ -247,6 +276,26 @@ function resetPatternSetting(){
 	blackberry.ui.dialog.standardAskAsync("Are you sure to reset the pattern key?", blackberry.ui.dialog.D_OK_CANCEL, resetPatternSettingConfirm, {title : "Are you sure?"});
 }
 
+//------------reset security question functions----------
+
+function resetQuestionSettingConfirm(selection){
+	if(selection.return === 'Ok' || selection == 0){
+		try{
+			localStorage.setItem('setQuestion', 'readyToSet');
+			localStorage.removeItem("securityAnswer");
+			localStorage.removeItem("securityQuestion");
+			blackberry.ui.toast.show("Security Question reseted with success!");
+		}catch (e) {
+			console.log(e);
+		}
+		popScreenIndex();
+	}
+}
+
+function resetQuestionSetting(){
+	blackberry.ui.dialog.standardAskAsync("Are you sure to reset the security question?", blackberry.ui.dialog.D_OK_CANCEL, resetQuestionSettingConfirm, {title : "Are you sure?"});
+}
+
 //------------------reset app functions------------------
 
 function resetAppConfirm(selection){
@@ -270,3 +319,36 @@ function resetApp(){
 }
 
 //------------------------------------------------------
+
+function pushForgot(){
+	if(localStorage.getItem('setQuestion') == 'readyToSet'){
+		try{
+			blackberry.ui.toast.show("No patterns to recover.");
+		}catch (e) {
+			console.log(e);
+		}
+	}else if(localStorage.getItem('setQuestion') == 'seted'){
+		bb.pushScreen('forgot.html', 'forgot');
+	}
+}
+
+function RecoverPattern(){
+	var answer = document.getElementById('answerforgot').value;
+	if(localStorage.getItem('securityAnswer') === answer){
+		try{
+			localStorage.removeItem("paternseted");
+			localStorage.removeItem("patern");
+			localStorage.setItem('resetToken', 'ok');
+			blackberry.ui.toast.show("Right Answer! The pattern key has been reseted.");
+		}catch (e) {
+			console.log(e);
+		}
+		popScreenIndex();
+	}else{
+		try{
+			blackberry.ui.toast.show("Wrong answer, check your question and answer with right text.");
+		}catch (e) {
+			console.log(e);
+		}
+	}
+}

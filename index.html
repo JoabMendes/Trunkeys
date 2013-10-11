@@ -102,6 +102,11 @@
                                 document.getElementById('btnDelete').setAttribute('onclick','doDelete('+params.row_id+')');
                                 
                             }
+                            if(id === 'forgot'){
+                                var question = localStorage.getItem('securityQuestion');
+                                document.getElementById('labelSecQ').innerHTML = question;
+                                
+                            }
                                     
                     }
             });
@@ -120,9 +125,9 @@
                 </tr>
             </table>
             <div id="action_bar_unlock">
-                <div onclick="bb.pushScreen('help.html', 'help');" id="butbar" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
+                <div onclick="pushForgot();" id="butbar" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
                     <img src="img/icons/ic_help.png" class="bb-action-bar-icon">
-                    <div class="bb-action-bar-action-display">Help</div>
+                    <div class="bb-action-bar-action-display">Forgot</div>
                 </div>
                 <div style="visibility: visible;" onClick="clearPaternReset();" id="resetIndexButton" class="bb-action-bar-action bb-action-bar-action-portrait bb-action-bar-button-dark">
                     <img src="img/icons/ic_reload.png" class="bb-action-bar-icon">

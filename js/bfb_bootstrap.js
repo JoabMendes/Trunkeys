@@ -17,7 +17,7 @@
 // called by the webworks ready event
 function initApp() {
 	console.log('app init');
-	//bb.pushScreen('help.html', 'help');
+	//bb.pushScreen('recover.html', 'recover');
 }
 
 
