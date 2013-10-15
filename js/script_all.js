@@ -38,11 +38,11 @@ function passwordStrength(password)
 //Message first login
 function checkInsertPatern(){
 	if(localStorage.getItem('setQuestion') === 'readyToSet' || localStorage.getItem('setQuestion') == null){
-		blackberry.ui.dialog.standardAskAsync("In your first login you need to follow the steps: \n1. Create a pattern key to login your app. \n2. Save a security question and your respective answer. ", blackberry.ui.dialog.D_OK, null, {
+		blackberry.ui.dialog.standardAskAsync("In your first login you need to follow the steps: 1. Create a pattern key to login your app. 2. Save a security question and your respective answer. ", blackberry.ui.dialog.D_OK, null, {
 			title: "Welcome to the Trunkeys!"
 		});
 	}else{
-		blackberry.ui.dialog.standardAskAsync("You need to follow the steps: \n1. Create a pattern key to login your app.", blackberry.ui.dialog.D_OK, null, {
+		blackberry.ui.dialog.standardAskAsync("You need to follow the steps: 1. Create a pattern key to login your app.", blackberry.ui.dialog.D_OK, null, {
 			title: "Patern Reseted"
 		});
 	}
@@ -303,9 +303,15 @@ function resetAppConfirm(selection){
 		try{
 			localStorage.removeItem("paternseted");
 			localStorage.removeItem("patern");
+
 			localStorage.setItem("maxid", 0);
 			localStorage.removeItem('BDKEYS');
 			localStorage.removeItem('resetToken');
+
+			localStorage.setItem('setQuestion', 'readyToSet');
+			localStorage.removeItem("securityAnswer");
+			localStorage.removeItem("securityQuestion");
+
 			blackberry.ui.toast.show("App reseted with success!");
 		}catch (e) {
 			console.log(e);
@@ -321,13 +327,12 @@ function resetApp(){
 //------------------------------------------------------
 
 function pushForgot(){
-	if(localStorage.getItem('setQuestion') == 'readyToSet'){
-		try{
-			blackberry.ui.toast.show("No patterns to recover.");
-		}catch (e) {
-			console.log(e);
-		}
+	if(localStorage.getItem('setQuestion') === 'readyToSet' || localStorage.getItem('setQuestion') == null){
+		blackberry.ui.dialog.standardAskAsync("To recover the pattern key you need to insert the security question.", blackberry.ui.dialog.D_OK, null, {
+			title: "Ops!"
+		})
 	}else if(localStorage.getItem('setQuestion') == 'seted'){
+		document.getElementById("content").style.display = "none";
 		bb.pushScreen('forgot.html', 'forgot');
 	}
 }
@@ -345,10 +350,8 @@ function RecoverPattern(){
 		}
 		popScreenIndex();
 	}else{
-		try{
-			blackberry.ui.toast.show("Wrong answer, check your question and answer with right text.");
-		}catch (e) {
-			console.log(e);
-		}
+		blackberry.ui.dialog.standardAskAsync("Wrong answer, check your question and answer with right text.", blackberry.ui.dialog.D_OK, null, {
+			title: "Ops!"
+		});
 	}
 }
